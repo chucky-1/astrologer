@@ -23,14 +23,14 @@ func NewPicture(servicePicture service.Picture) *Picture {
 	return &Picture{servicePicture: servicePicture}
 }
 
-// GetPictureByDateRequest format: YYYY-MM-DD
-type GetPictureByDateRequest struct {
+// getPictureByDateRequest format: YYYY-MM-DD
+type getPictureByDateRequest struct {
 	Date string `json:"date"`
 }
 
 // GetPictureByDate - get a picture for a certain day
 func (p *Picture) GetPictureByDate(c echo.Context) error {
-	request := new(GetPictureByDateRequest)
+	request := new(getPictureByDateRequest)
 	if err := c.Bind(request); err != nil {
 		logrus.Errorf("handler.GetPictureByDate, Bind: %v", err)
 		return echo.NewHTTPError(http.StatusBadRequest, "can't get picture, try again.")
